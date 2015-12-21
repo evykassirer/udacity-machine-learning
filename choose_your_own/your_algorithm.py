@@ -24,7 +24,7 @@ plt.scatter(grade_slow, bumpy_slow, color = "r", label="slow")
 plt.legend()
 plt.xlabel("bumpiness")
 plt.ylabel("grade")
-plt.show()
+#plt.show()
 ################################################################################
 
 
@@ -32,13 +32,31 @@ plt.show()
 ### visualization code (prettyPicture) to show you the decision boundary
 
 
+"""from sklearn.ensemble import RandomForestClassifier
+clf = RandomForestClassifier(n_estimators=10)
+clf = clf.fit(features_train, labels_train)
+print clf.score(features_test, labels_test)"""
 
+"""
+from sklearn.ensemble import AdaBoostClassifier
+clf = AdaBoostClassifier(n_estimators=50)
+clf = clf.fit(features_train, labels_train)
+print clf.score(features_test, labels_test)
+"""
 
+"""
+from sklearn import svm
+clf = svm.SVC(C=1, kernel='linear', gamma=1)
+clf = clf.fit(features_train, labels_train)
+print clf.score(features_test, labels_test)
+"""
 
+from sklearn.neighbors import KNeighborsClassifier
+clf = KNeighborsClassifier(n_neighbors=4)
+clf = clf.fit(features_train, labels_train)
+print clf.score(features_test, labels_test)
 
-
-
-try:
-    prettyPicture(clf, features_test, labels_test)
-except NameError:
-    pass
+#try:
+#    prettyPicture(clf, features_test, labels_test)
+#except NameError:
+#    pass
