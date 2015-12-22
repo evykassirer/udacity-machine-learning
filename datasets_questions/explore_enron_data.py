@@ -19,4 +19,14 @@ import pickle
 
 enron_data = pickle.load(open("../final_project/final_project_dataset.pkl", "r"))
 
+total = 0
+count = 0
 
+for v in enron_data.itervalues():
+	if v["poi"]:
+		total += 1
+		if v["total_payments"] == "NaN":
+			count += 1
+
+print count
+print total
