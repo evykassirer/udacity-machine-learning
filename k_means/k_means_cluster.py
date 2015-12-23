@@ -45,7 +45,7 @@ data_dict.pop("TOTAL", 0)
 
 
 maxval = None
-minval = Nonez
+minval = None
 for v in data_dict.itervalues():
     if v["salary"] != "NaN":
         if maxval is None or v["salary"] > maxval:
