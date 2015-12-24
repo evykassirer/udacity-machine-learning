@@ -44,25 +44,18 @@ data_dict = pickle.load( open("../final_project/final_project_dataset.pkl", "r")
 data_dict.pop("TOTAL", 0)
 
 
-maxval = None
-minval = None
-for v in data_dict.itervalues():
-    if v["salary"] != "NaN":
-        if maxval is None or v["salary"] > maxval:
-             maxval = v["salary"]
-        elif minval is None or v["salary"] < minval:
-             minval = v["salary"]
-print maxval
-print minval
-
-
 ### the input features we want to use 
 ### can be any key in the person-level dictionary (salary, director_fees, etc.) 
 feature_1 = "salary"
 feature_2 = "exercised_stock_options"
 poi  = "poi"
-features_list = [poi, feature_1, feature_2, "total_payments"]
+features_list = [poi, feature_1, feature_2]
 data = featureFormat(data_dict, features_list )
+from sklearn import preprocessing
+min_max_scaler = preprocessing.MinMaxScaler()
+data = min_max_scaler.fit_transform(data)
+print min_max_scaler.data_min_
+print min_max_scaler.data_max_
 poi, finance_features = targetFeatureSplit( data )
 
 
@@ -70,7 +63,7 @@ poi, finance_features = targetFeatureSplit( data )
 ### you'll want to change this line to 
 ### for f1, f2, _ in finance_features:
 ### (as it's currently written, the line below assumes 2 features)
-for f1, f2, _ in finance_features:
+for f1, f2 in finance_features:
     plt.scatter( f1, f2 )
 plt.show()
 
@@ -85,6 +78,6 @@ pred = model.labels_
 ### rename the "name" parameter when you change the number of features
 ### so that the figure gets saved to a different file
 try:
-    Draw(pred, finance_features, poi, mark_poi=False, name="clusters1.pdf", f1_name=feature_1, f2_name=feature_2)
+    Draw(pred, finance_features, poi, mark_poi=False, name="clusters2.pdf", f1_name=feature_1, f2_name=feature_2)
 except NameError:
     print "no predictions object named pred found, no clusters to plot"
