@@ -38,6 +38,19 @@ labels_train   = labels_train[:150]
 
 
 ### your code goes here
+from sklearn import tree
+clf = tree.DecisionTreeClassifier()
+clf = clf.fit(features_train, labels_train)
+
+# find "signature words"
+for i, f in enumerate(clf.feature_importances_):
+	if f > 0.2:
+		print i 
+		print f 
+		print vectorizer.get_feature_names()[i]
+
+print clf.score(features_test, labels_test)
+
 
 
 
