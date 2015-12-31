@@ -68,7 +68,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random
 # dataset): unsupervised feature extraction / dimensionality reduction
 n_components = 250
 print "N COMPONENTS 250~~~~~~~"
-# was set to varying values in this lesson
+# was set to varying values in this lesson, comparing F1 score
 
 print "Extracting the top %d eigenfaces from %d faces" % (n_components, X_train.shape[0])
 t0 = time()
